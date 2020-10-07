@@ -8,7 +8,7 @@ namespace Hangit.App
     {
         private char[] _wordtoguess;
 
-        Game(string inWord)
+        public Game(string inWord)
         {
             _wordtoguess = inWord.ToCharArray();
             Console.WriteLine(_wordtoguess);
