@@ -29,5 +29,9 @@ namespace Hangit.App
             } while (pos >= 0);
             return hit;
         }
+        internal static void AddCharValue(char[] inCharList,char key)
+        {
+            inCharList[GetCharPos(inCharList,' ')] = key;
+        }
     }
 }

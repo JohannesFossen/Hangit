@@ -12,13 +12,12 @@ namespace Hangit.App
                 Console.Write($"{c} ");
             Console.WriteLine("");
         }
-        public static char ReadChar()
+        public static char ReadChar(int number)
         {
             char key;
-            //string str;
             do
             {
-                Console.Write("Next one to try > ");
+                Console.Write($"Next one to try ({number}) > ");
                 key = Console.ReadKey().KeyChar;
                 //Console.WriteLine("");
                 key = (key.ToString().ToUpper())[0];

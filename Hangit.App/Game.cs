@@ -7,8 +7,8 @@ namespace Hangit.App
     public class Game
     {
         private char[] _wordtoguess;
-        private char[] _solution = new char[30];//"".ToCharArray();
-        private char[] _guesses = new char[30];
+        private char[] _solution = new char[30];
+        private char[] _guesses = "                              ".ToCharArray();
         private int _triesleft = Program.maxTries;
 
         public Game(string inWord)
@@ -27,18 +27,26 @@ namespace Hangit.App
             do
             {
                 UserIO.ShowCharString(_solution);
-                //UserIO.ShowCharString($"Tries left");
+                UserIO.ShowCharString(_guesses);
                 do
                 {
-                    key = UserIO.ReadChar();
-                } while (false);
+                    key = UserIO.ReadChar(_triesleft);
+                    if (Evaluate.GetCharPos(_guesses, key) >= 0)
+                    {
+                        UserIO.ShowText(" Tried already.");
+                        key = ' ';
+                    }
+                } while (key == ' ');
                 if (Evaluate.CheckSolution(key, _wordtoguess, _solution))
                 {
                     UserIO.ShowText(" Hit!");
                     _triesleft--;
                 }
                 else
+                {
                     UserIO.ShowText(" Miss.");
+                    Evaluate.AddCharValue(_guesses, key);
+                }
                 if (Evaluate.GetCharPos(_solution,'-') == -1)
                 {
                     UserIO.ShowCharString(_solution);
