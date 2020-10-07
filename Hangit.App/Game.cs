@@ -35,20 +35,27 @@ namespace Hangit.App
                 //_words = new List<GuessWords>();
                 _words = UserIO.ReadGuessFile();
             }
+        }
+        internal void GameReset()
+        {
+            _scoreboard = "                              ".ToCharArray();
+            _missed     = "                              ".ToCharArray();
             Random rnd = new Random();
             int tmp = _words.Count;
-            GuessWords guessObj = _words.Find(w => w.Number == rnd.Next(0, _words.Count - 1));
-            _wordtoguess = guessObj.Word.ToUpper().ToCharArray(); 
+            GuessWords guessObj = _words.Find(w => w.Number == rnd.Next(0, (_words.Count - 1))); // Random error: Outside array bounds.
+            _wordtoguess = guessObj.Word.ToUpper().ToCharArray();
             int i = 0;
             foreach (char c in _wordtoguess)
                 _scoreboard[i++] = '-';
             UserIO.ShowText($"The hint is: {guessObj.Hint}.");
             //Console.WriteLine(_wordtoguess); // Just for test...
+
         }
         public void Play()
         {
             char key;
             bool done = false;
+            GameReset();
             UserIO.ShowText("Starting the guess!");
             do
             {

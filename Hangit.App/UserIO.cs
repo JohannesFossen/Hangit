@@ -34,6 +34,14 @@ namespace Hangit.App
             } while (key == ' ');
             return key;
         }
+        public static char ReadOneChar(string inText)
+        {
+            char key;
+            Console.Write(inText);
+            key = Console.ReadKey().KeyChar;
+            Console.WriteLine("");
+            return key;
+        }
         public static void ShowText(string inText)
         {
             Console.WriteLine(inText);
