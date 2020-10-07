@@ -8,6 +8,8 @@ namespace Hangit.App
     {
         internal static int GetCharPos(char[] inCharList, char find, int start = 0)
         {
+            // OO: when you do a method it's good to be suspicious on the parameters. And throw exceptions if they are incorrect (e.g "start" is a negative number or too high)
+
             for (int i = start; i < inCharList.Length; i++)
                 if (inCharList[i] == find)
                     return i;

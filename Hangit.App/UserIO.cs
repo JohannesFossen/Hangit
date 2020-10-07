@@ -12,14 +12,14 @@ namespace Hangit.App
                 Console.Write($"{c} ");
             Console.WriteLine("");
         }
-        public static char ReadChar(int number)
+        public static char ReadChar(int number)   // OO: Nice method, just think about the name of the method
         {
             char key;
             do
             {
                 Console.Write($"Next one to try ({number}) > ");
                 key = Console.ReadKey().KeyChar;
-                if (key != 'Q') // Quit character.
+                if (key != 'Q') // Quit character.   // OO: Detail, if you create a variable named QuitCharacter, then you don't need the comment
                 {
                     //Console.WriteLine("");
                     key = (key.ToString().ToUpper())[0];
