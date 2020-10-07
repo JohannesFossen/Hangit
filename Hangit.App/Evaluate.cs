@@ -6,5 +6,13 @@ namespace Hangit.App
 {
     class Evaluate
     {
+
+        internal int GetCharPos(char[] inCharList, char find, int start = 0)
+        {
+            for (int i = start; i < inCharList.Length; i++)
+                if (inCharList[i] == find)
+                    return i;
+            return -1;
+        }
     }
 }
