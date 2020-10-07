@@ -13,7 +13,7 @@ namespace Hangit.App
                     return i;
             return -1;
         }
-        internal static bool CheckSolution(char tryChar,char[] inWordToCheck, char[] inSolution)
+        internal static bool CheckSolution(char tryChar,char[] inWordToCheck, char[] inScoreboard)
         {
             int pos = -1;
             bool hit = false;
@@ -23,7 +23,7 @@ namespace Hangit.App
                 if (pos >= 0)
                 {
                     // Correct character.
-                    inSolution[pos] = tryChar;
+                    inScoreboard[pos] = tryChar;
                     hit = true;
                 }
             } while (pos >= 0);

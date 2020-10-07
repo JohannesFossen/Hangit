@@ -1,0 +1,14 @@
+bil,Transportmiddel på hjul
+tog,Transportmiddel på skinner
+trikk,Transportmiddel på skinner
+nidarosdomen,Landemerke i Trondheim
+oz,Dorothy dro til det landet
+kvikklunsj,Kjent sjokolade
+japp,Kjent sjokolade
+stol,Møbel å sitte på
+krakk,Møbel å sitte på
+sverige,Naboland
+mazda,Bilmerke
+kia,Bilmerke
+lamborghini,Eksklusivt bilmerke
+eik,Blir store trær

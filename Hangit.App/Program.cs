@@ -7,8 +7,7 @@ namespace Hangit.App
         public static int maxTries = 10;
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            Game game = new Game("ROMFART");
+            Game game = new Game();
             game.Play();
         }
     }

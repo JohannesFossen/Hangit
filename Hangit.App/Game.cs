@@ -4,20 +4,46 @@ using System.Text;
 
 namespace Hangit.App
 {
+    internal class GuessWords
+    {
+        internal int Number;
+        internal string Word;
+        internal string Hint;
+        public GuessWords(int number, string word, string hint)
+        {
+            Number = number;
+            Word = word;
+            Hint = hint;
+        }
+    }
     public class Game
     {
         private char[] _wordtoguess;
         private char[] _scoreboard = new char[30];
         private char[] _missed = "                              ".ToCharArray();
         private int _triesleft = Program.maxTries;
+        //private GuessWords _guessobj;
+        private static List<GuessWords> _words;
 
-        public Game(string inWord)
+        public Game()
         {
-            _wordtoguess = inWord.ToUpper().ToCharArray();
+            //List<GuessWords> _words = new List<GuessWords>();
+            //List<GuessWords> _words;
+             if (_words == null)
+            {
+                // Read file only once.
+                //_words = new List<GuessWords>();
+                _words = UserIO.ReadGuessFile();
+            }
+            Random rnd = new Random();
+            int tmp = _words.Count;
+            GuessWords guessObj = _words.Find(w => w.Number == rnd.Next(0, _words.Count - 1));
+            _wordtoguess = guessObj.Word.ToUpper().ToCharArray(); 
             int i = 0;
             foreach (char c in _wordtoguess)
                 _scoreboard[i++] = '-';
-            Console.WriteLine(_wordtoguess); // Just for test...
+            UserIO.ShowText($"The hint is: {guessObj.Hint}.");
+            //Console.WriteLine(_wordtoguess); // Just for test...
         }
         public void Play()
         {
@@ -35,7 +61,7 @@ namespace Hangit.App
                     key = UserIO.ReadChar(_triesleft);
                     if (key != 'Q') // Quit character.
                     {
-                        if (Evaluate.GetCharPos(_missed, key) >= 0)
+                        if (Evaluate.GetCharPos(_missed, key) >= 0 || Evaluate.GetCharPos(_scoreboard, key) >= 0)
                         {
                             UserIO.ShowText(" Tried already.");
                             key = ' ';
