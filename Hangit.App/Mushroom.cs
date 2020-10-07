@@ -6,6 +6,5 @@ namespace Hangit.App
 {
     class Mushroom
     {
-        Console.WriteLine("Skal slettes etterpå.");
     }
 }
