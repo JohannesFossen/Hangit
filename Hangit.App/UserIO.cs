@@ -6,9 +6,9 @@ namespace Hangit.App
 {
     class UserIO
     {
-        public ShowSolution(char[] inSolution)
+        public void ShowCharString(char[] inString)
         {
-            foreach (char c in inSolution)
+            foreach (char c in inString)
                 Console.Write($"{c} ");
             Console.WriteLine("");
         }
