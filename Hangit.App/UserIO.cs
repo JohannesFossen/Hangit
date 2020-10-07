@@ -19,12 +19,15 @@ namespace Hangit.App
             {
                 Console.Write($"Next one to try ({number}) > ");
                 key = Console.ReadKey().KeyChar;
-                //Console.WriteLine("");
-                key = (key.ToString().ToUpper())[0];
-                if (key < 'A' || key > 'Z')
+                if (key != 'Q') // Quit character.
                 {
-                    Console.WriteLine($" Illegal input '{key}'.");
-                    key = ' ';
+                    //Console.WriteLine("");
+                    key = (key.ToString().ToUpper())[0];
+                    if (key < 'A' || key > 'Z')
+                    {
+                        Console.WriteLine($" Illegal input '{key}'.");
+                        key = ' ';
+                    }
                 }
             } while (key == ' ');
             return key;

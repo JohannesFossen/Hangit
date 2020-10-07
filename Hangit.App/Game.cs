@@ -33,24 +33,30 @@ namespace Hangit.App
                 do
                 {
                     key = UserIO.ReadChar(_triesleft);
-                    if (Evaluate.GetCharPos(_missed, key) >= 0)
+                    if (key != 'Q') // Quit character.
                     {
-                        UserIO.ShowText(" Tried already.");
-                        key = ' ';
+                        if (Evaluate.GetCharPos(_missed, key) >= 0)
+                        {
+                            UserIO.ShowText(" Tried already.");
+                            key = ' ';
+                        }
                     }
                 } while (key == ' ');
                 // Check if key is a hit.
-                if (Evaluate.CheckSolution(key, _wordtoguess, _scoreboard))
+                if (key != 'Q')
                 {
-                    UserIO.ShowText(" Hit!");
-                    _triesleft--;
+                    if (Evaluate.CheckSolution(key, _wordtoguess, _scoreboard))
+                    {
+                        UserIO.ShowText(" Hit!");
+                        _triesleft--;
+                    }
+                    else
+                    {
+                        UserIO.ShowText(" Miss.");
+                        Evaluate.AddCharValue(_missed, key);
+                    }
                 }
-                else
-                {
-                    UserIO.ShowText(" Miss.");
-                    Evaluate.AddCharValue(_missed, key);
-                }
-                // Winner or bust?
+                // Winner or bust? Or Quit...
                 if (Evaluate.GetCharPos(_scoreboard,'-') == -1)
                 {
                     UserIO.ShowCharString(_scoreboard);
@@ -61,6 +67,13 @@ namespace Hangit.App
                     UserIO.ShowText($"Sorry, you spent all {Program.maxTries} tries. The solution was:");
                     UserIO.ShowCharString(_wordtoguess);
                     done = true;
+                } else if (key == 'Q')
+                {
+                    UserIO.ShowText("");
+                    UserIO.ShowText($"Game aborted. The solution was:");
+                    UserIO.ShowCharString(_wordtoguess);
+                    done = true;
+
                 }
             } while (!done);
         }
