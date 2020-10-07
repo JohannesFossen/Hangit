@@ -8,7 +8,7 @@ namespace Hangit.App
     {
         public void WriteSkoj()
         {
-            Console.WriteLine("Skoj!");
+            Console.WriteLine("Skoj - Extra!");
         }
     }
 }
