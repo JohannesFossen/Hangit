@@ -19,5 +19,33 @@ namespace Hangit.App
                 _solution[i++] = '-';
             Console.WriteLine(_wordtoguess);
         }
+        public void Play()
+        {
+            char key;
+            bool done = false;
+            UserIO.ShowText("Starting the guess!");
+            do
+            {
+                UserIO.ShowCharString(_solution);
+                //UserIO.ShowCharString($"Tries left");
+                do
+                {
+                    key = UserIO.ReadChar();
+                } while (false);
+                if (Evaluate.CheckSolution(key, _wordtoguess, _solution))
+                {
+                    UserIO.ShowText(" Hit!");
+                    _triesleft--;
+                }
+                else
+                    UserIO.ShowText(" Miss.");
+                if (Evaluate.GetCharPos(_solution,'-') == -1)
+                {
+                    UserIO.ShowCharString(_solution);
+                    UserIO.ShowText("Winner!");
+                    done = true;
+                }
+            } while (!done);
+        }
     }
 }

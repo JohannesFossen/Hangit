@@ -9,6 +9,7 @@ namespace Hangit.App
         {
             Console.WriteLine("Hello World!");
             Game game = new Game("ROMFART");
+            game.Play();
         }
     }
 }
