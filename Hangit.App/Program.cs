@@ -4,7 +4,7 @@ namespace Hangit.App
 {
     class Program
     {
-        public static int maxTries;
+        public static int maxTries = 10;
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");

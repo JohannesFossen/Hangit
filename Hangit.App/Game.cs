@@ -7,8 +7,8 @@ namespace Hangit.App
     public class Game
     {
         private char[] _wordtoguess;
-        private char[] _solution;
-        private char[] _guesses;
+        private char[] _solution = new char[30];//"".ToCharArray();
+        private char[] _guesses = new char[30];
         private int _triesleft = Program.maxTries;
 
         public Game(string inWord)
