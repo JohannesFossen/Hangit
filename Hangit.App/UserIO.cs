@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Hangit.App
 {
-    class UserIO
+    public static class UserIO
     {
-        public void ShowCharString(char[] inString)
+        public static void ShowCharString(char[] inString)
         {
             foreach (char c in inString)
                 Console.Write($"{c} ");

@@ -4,10 +4,9 @@ using System.Text;
 
 namespace Hangit.App
 {
-    class Evaluate
+    public static class Evaluate
     {
-
-        internal int GetCharPos(char[] inCharList, char find, int start = 0)
+        internal static int GetCharPos(char[] inCharList, char find, int start = 0)
         {
             for (int i = start; i < inCharList.Length; i++)
                 if (inCharList[i] == find)
