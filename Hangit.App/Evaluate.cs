@@ -13,5 +13,21 @@ namespace Hangit.App
                     return i;
             return -1;
         }
+        internal static bool CheckSolution(char tryChar,char[] inWordToCheck, char[] inSolution)
+        {
+            int pos = -1;
+            bool hit = false;
+            do
+            {
+                pos = GetCharPos(inWordToCheck, tryChar, pos+1);
+                if (pos >= 0)
+                {
+                    // Correct character.
+                    inSolution[pos] = tryChar;
+                    hit = true;
+                }
+            } while (pos >= 0);
+            return hit;
+        }
     }
 }
