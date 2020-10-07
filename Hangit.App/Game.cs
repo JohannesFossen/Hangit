@@ -48,12 +48,12 @@ namespace Hangit.App
                     if (Evaluate.CheckSolution(key, _wordtoguess, _scoreboard))
                     {
                         UserIO.ShowText(" Hit!");
-                        _triesleft--;
                     }
                     else
                     {
                         UserIO.ShowText(" Miss.");
                         Evaluate.AddCharValue(_missed, key);
+                        _triesleft--;
                     }
                 }
                 // Winner or bust? Or Quit...
