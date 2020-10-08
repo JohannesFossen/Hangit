@@ -25,7 +25,8 @@ namespace Hangit.App
                 {
                     //Console.WriteLine("");
                     key = (key.ToString().ToUpper())[0];
-                    if (!((key >= 'A' && key <= 'Z') || key == 'Æ' || key == 'Ø' || key == 'Å'))
+                    //if (!((key >= 'A' && key <= 'Z') || key == 'Æ' || key == 'Ø' || key == 'Å'))
+                    if (!Evaluate.LegalKey(key))
                     {
                         Console.WriteLine($" Illegal input '{key}'.");
                         key = ' ';

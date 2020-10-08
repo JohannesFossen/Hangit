@@ -24,6 +24,7 @@ namespace Hangit.Test
             GuessResult result1 = h.Guess('E');
             GuessResult result2 = h.Guess('E');
 
+            Assert.AreEqual(GuessResult.CorrectGuess, result1);
             Assert.AreEqual(GuessResult.AlreadyGuessed, result2);
         }
 
