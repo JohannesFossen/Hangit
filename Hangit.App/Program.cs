@@ -5,6 +5,7 @@ namespace Hangit.App
     class Program
     {
         public static int maxTries = 10;
+        private string _day = "thursday";
         static void Main(string[] args)
         {
             char key;
