@@ -71,7 +71,8 @@ namespace Hangit.App
                     if (key != 'Q') // Quit character.
                     {
                         // OO: Hint, create one more method that describes what you're checking here (that method may call Evaluate.GetCharPos)
-                        if (Evaluate.GetCharPos(_missed, key) >= 0 || Evaluate.GetCharPos(_scoreboard, key) >= 0)
+                        //if (Evaluate.GetCharPos(_missed, key) >= 0 || Evaluate.GetCharPos(_scoreboard, key) >= 0)
+                        if(Evaluate.KeyExists(key,_missed,_scoreboard))
                         {
                             UserIO.ShowText(" Tried already.");
                             key = ' ';
@@ -81,19 +82,21 @@ namespace Hangit.App
                 // Check if key is a hit.
                 if (key != 'Q')
                 {
-                    if (Evaluate.CheckSolution(key, _wordtoguess, _scoreboard)) // OO: quite good name, but you might give it an even better name
+                    //if (Evaluate.CheckSolution(key, _wordtoguess, _scoreboard)) // OO: quite good name, but you might give it an even better name
+                    if (Evaluate.HitOrMiss(key, _wordtoguess, _scoreboard))
                     {
                         UserIO.ShowText(" Hit!");
                     }
                     else
                     {
                         UserIO.ShowText(" Miss.");
-                        Evaluate.AddCharValue(_missed, key);
+                        Evaluate.AddCharValue(key, _missed);
                         _triesleft--;
                     }
                 }
                 // Winner or bust? Or Quit...
-                if (Evaluate.GetCharPos(_scoreboard,'-') == -1)  // OO: here you can have a method like "Evaluate.PlayerHasWon(_scoreboard)" or "Evaluate.NoOccurrance('-', _scoreboard)" or "!Evaluate.Contains('-', _scoreboard)"
+                //if (!Evaluate.GetCharPos(_scoreboard,'-') == -1)  // OO: here you can have a method like "Evaluate.PlayerHasWon(_scoreboard)" or "Evaluate.NoOccurrance('-', _scoreboard)" or "!Evaluate.Contains('-', _scoreboard)"
+                if (!Evaluate.KeyExists('-',_scoreboard))
                 {
                     UserIO.ShowCharString(_scoreboard);
                     UserIO.ShowText("Winner!");

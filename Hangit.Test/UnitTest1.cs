@@ -53,7 +53,7 @@ namespace Hangit.Test
             Assert.AreEqual(3, result);
         }
 
-        // todo: skapa tre tester för "CheckSolution"
+        // todo: skapa tre tester för "CheckSolution" -> "HitOrMiss"
         [TestMethod]
         public void checksolution_check_A_returns_true()
         {
@@ -63,7 +63,7 @@ namespace Hangit.Test
             var checkChar = 'A';
             
             // Act
-            var result = Evaluate.CheckSolution(checkChar, word, score);
+            var result = Evaluate.HitOrMiss(checkChar, word, score);
 
             // Assert
             Assert.IsTrue(result);
@@ -78,7 +78,7 @@ namespace Hangit.Test
             var checkChar = 'E';
 
             // Act
-            var result = Evaluate.CheckSolution(checkChar, word, score);
+            var result = Evaluate.HitOrMiss(checkChar, word, score);
 
             // Assert
             Assert.IsFalse(result);
