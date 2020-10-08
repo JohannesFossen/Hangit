@@ -9,9 +9,13 @@ namespace Hangit.App
         {
             char key;
             Game game = new Game();
+            Hangman hangman = new Hangman("UTEPILS");
+            hangman.Play();
+            return;
             do
             {
                 game.Play();
+                
                 key = UserIO.ReadOneChar("\nPlay more (y)? ");
             } while (key != 'n' && key != 'N');
         }

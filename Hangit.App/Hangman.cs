@@ -12,7 +12,7 @@ namespace Hangit.App
     {
         CorrectGuess, IncorrectGuess, InvalidGuess, AlreadyGuessed, QuitPlay
     }
-    
+
     public class Hangman
     {
         // "Minnet"
@@ -20,7 +20,7 @@ namespace Hangit.App
         //private List<char> _guesses = new List<char>(); // (exempelvis)
         private char[] _secretword;
         private char[] _scoreboard = "                    ".ToCharArray();
-        private char[] _misses     = "                    ".ToCharArray();
+        private char[] _misses = "                    ".ToCharArray();
 
         public Hangman(string secretWord)
         {
@@ -51,6 +51,59 @@ namespace Hangit.App
 
             Evaluate.AddCharValue(guess, _misses);
             return GuessResult.IncorrectGuess;
+        }
+        public void Play()
+        {
+            char guess;
+            int numberOfTries = 10;
+            bool done = false;
+            do
+            {
+                UserIO.ShowText("Starting the guess!");
+                UserIO.ShowCharString(_scoreboard);
+                UserIO.ShowCharString(_misses);
+                guess = UserIO.ReadChar(numberOfTries);
+                switch (Guess(guess))
+                {
+                    case GuessResult.InvalidGuess:
+                        Console.WriteLine($" Illegal input '{guess}'.");
+                        break;
+                    case GuessResult.AlreadyGuessed:
+                        UserIO.ShowText(" Tried already.", ConsoleColor.Yellow);
+                        break;
+                    case GuessResult.IncorrectGuess:
+                        UserIO.ShowText(" Miss.", ConsoleColor.Red);
+                        numberOfTries--;
+                        break;
+                    case GuessResult.CorrectGuess:
+                        UserIO.ShowText(" Hit.", ConsoleColor.Green);
+                        break;
+                    case GuessResult.QuitPlay:
+                        break;
+                    default:
+                        break;
+                }
+                if (!Evaluate.KeyExists('-', _scoreboard))
+                {
+                    UserIO.ShowCharString(_scoreboard);
+                    UserIO.ShowText("Winner!", ConsoleColor.Green);
+                    done = true;
+                }
+                else if (numberOfTries == 0)
+                {
+                    UserIO.ShowText($"Sorry, you spent all {Program.maxTries} tries. The solution was:", ConsoleColor.Red);
+                    UserIO.ShowCharString(_secretword);
+                    done = true;
+                }
+                else if (guess == 'Q')
+                {
+                    UserIO.ShowText("");
+                    UserIO.ShowText($"Game aborted. The solution was:", ConsoleColor.Red);
+                    UserIO.ShowCharString(_secretword);
+                    done = true;
+
+                }
+            } while (!done);
         }
     }
 }
