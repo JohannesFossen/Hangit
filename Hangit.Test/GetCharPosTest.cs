@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Hangit.Test
 {
     [TestClass]
-    public class UnitTest1
+    public class GetCharPosTest
     {
         [TestMethod]
         //public void should_return_index_2_when_searching_for_C()
@@ -82,10 +82,15 @@ namespace Hangit.Test
 
             // Assert
             Assert.IsFalse(result);
-            Assert.AreEqual('-', score[0]);
-            Assert.AreEqual('B', score[1]);
-            Assert.AreEqual('-', score[2]);
-            Assert.AreEqual('-', score[3]);
+
+            // tips: kolla på "CollectionAssert.AreEqual"
+
+            CollectionAssert.AreEqual(new[] { '-','B','-','-',},score);
+
+            //Assert.AreEqual('-', score[0]);
+            //Assert.AreEqual('B', score[1]);
+            //Assert.AreEqual('-', score[2]);
+            //Assert.AreEqual('-', score[3]);
         }
     }
 

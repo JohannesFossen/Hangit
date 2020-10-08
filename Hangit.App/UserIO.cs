@@ -58,7 +58,7 @@ namespace Hangit.App
             int number = 0;
             List<GuessWords> wordList;
             //string[] allLines = File.ReadAllLines(Directory.GetCurrentDirectory() + @"\Data\GuessWords.txt");
-            string[] allLines = File.ReadAllLines(@"C:\Users\jofos\source\repos\Hangit\Hangit.App\Data\GuessWords.txt");
+            string[] allLines = File.ReadAllLines(@"Data\GuessWords.txt");
             wordList = allLines.Select(line => new GuessWords(
                 number++,
                 line.Split(',', StringSplitOptions.RemoveEmptyEntries)[0],
