@@ -41,17 +41,14 @@ namespace Hangit.App
             _scoreboard = "                              ".ToCharArray();
             _missed     = "                              ".ToCharArray();
             Random rnd = new Random();
-            int tmp = _words.Count;
-            int rndint = rnd.Next(0, (_words.Count - 1));
-            GuessWords guessObj = _words.Find(w => w.Number == rndint); // Random error: Outside array bounds.
+            int rndInt = rnd.Next(0, (_words.Count - 1));
+            GuessWords guessObj = _words.Find(w => w.Number == rndInt);
             //GuessWords guessObj = _words.Find(w => w.Number == rnd.Next(0, (_words.Count - 1))); // Random error: Outside array bounds.
             _wordtoguess = guessObj.Word.ToUpper().ToCharArray();
             int i = 0;
             foreach (char c in _wordtoguess)
                 _scoreboard[i++] = '-';
             UserIO.ShowText($"The hint is: {guessObj.Hint}.");
-            //Console.WriteLine(_wordtoguess); // Just for test...
-
         }
         public void Play()
         {
