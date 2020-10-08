@@ -6,14 +6,14 @@ namespace Hangit.App
 {
     public static class Evaluate
     {
-        internal static int GetCharPos(char[] inCharList, char find, int start = 0)
+        public static int GetCharPos(char[] inCharList, char find, int start = 0)
         {
             for (int i = start; i < inCharList.Length; i++)
                 if (inCharList[i] == find)
                     return i;
             return -1;
         }
-        internal static bool CheckSolution(char tryChar,char[] inWordToCheck, char[] inScoreboard)
+        public static bool CheckSolution(char tryChar,char[] inWordToCheck, char[] inScoreboard)
         {
             int pos = -1;
             bool hit = false;
