@@ -42,9 +42,16 @@ namespace Hangit.App
             Console.WriteLine("");
             return key;
         }
-        public static void ShowText(string inText)
+        public static void ShowText(string inText, ConsoleColor color = ConsoleColor.White)
         {
-            Console.WriteLine(inText);
+            if (color == ConsoleColor.White)
+                Console.WriteLine(inText);
+            else
+            {
+                Console.ForegroundColor = color;
+                Console.WriteLine(inText);
+                Console.ForegroundColor = ConsoleColor.White;
+            }
         }
         internal static List<GuessWords> ReadGuessFile()
         {

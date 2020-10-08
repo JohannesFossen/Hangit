@@ -74,7 +74,7 @@ namespace Hangit.App
                         //if (Evaluate.GetCharPos(_missed, key) >= 0 || Evaluate.GetCharPos(_scoreboard, key) >= 0)
                         if(Evaluate.KeyExists(key,_missed,_scoreboard))
                         {
-                            UserIO.ShowText(" Tried already.");
+                            UserIO.ShowText(" Tried already.",ConsoleColor.Yellow);
                             key = ' ';
                         }
                     }
@@ -85,11 +85,11 @@ namespace Hangit.App
                     //if (Evaluate.CheckSolution(key, _wordtoguess, _scoreboard)) // OO: quite good name, but you might give it an even better name
                     if (Evaluate.HitOrMiss(key, _wordtoguess, _scoreboard))
                     {
-                        UserIO.ShowText(" Hit!");
+                        UserIO.ShowText(" Hit!", ConsoleColor.Green);
                     }
                     else
                     {
-                        UserIO.ShowText(" Miss.");
+                        UserIO.ShowText(" Miss.",ConsoleColor.Red);
                         Evaluate.AddCharValue(key, _missed);
                         _triesleft--;
                     }
@@ -99,17 +99,17 @@ namespace Hangit.App
                 if (!Evaluate.KeyExists('-',_scoreboard))
                 {
                     UserIO.ShowCharString(_scoreboard);
-                    UserIO.ShowText("Winner!");
+                    UserIO.ShowText("Winner!", ConsoleColor.Green);
                     done = true;
                 }else if (_triesleft == 0)
                 {
-                    UserIO.ShowText($"Sorry, you spent all {Program.maxTries} tries. The solution was:");
+                    UserIO.ShowText($"Sorry, you spent all {Program.maxTries} tries. The solution was:", ConsoleColor.Red);
                     UserIO.ShowCharString(_wordtoguess);
                     done = true;
                 } else if (key == 'Q')
                 {
                     UserIO.ShowText("");
-                    UserIO.ShowText($"Game aborted. The solution was:");
+                    UserIO.ShowText($"Game aborted. The solution was:", ConsoleColor.Red);
                     UserIO.ShowCharString(_wordtoguess);
                     done = true;
 
