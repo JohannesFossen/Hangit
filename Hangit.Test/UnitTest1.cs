@@ -55,7 +55,7 @@ namespace Hangit.Test
 
         // todo: skapa tre tester för "CheckSolution" -> "HitOrMiss"
         [TestMethod]
-        public void checksolution_check_A_returns_true()
+        public void hitormiss_check_A_returns_true()
         {
             // Arrange
             var word = new char[] { 'A', 'B', 'C', 'D' };
@@ -70,7 +70,7 @@ namespace Hangit.Test
             Assert.AreEqual('A', score[0]);
         }
         [TestMethod]
-        public void checksolution_check_E_returns_false()
+        public void hitormiss_check_E_returns_false()
         {
             // Arrange
             var word = new char[] { 'A', 'B', 'C', 'D' };
