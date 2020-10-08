@@ -6,7 +6,7 @@ namespace Hangit.App
 {
     public static class Evaluate
     {
-        internal static int GetCharPos(char[] inCharList, char find, int start = 0)
+        public static int GetCharPos(char[] inCharList, char find, int start = 0)
         {
             // OO: when you do a method it's good to be suspicious on the parameters. And throw exceptions if they are incorrect (e.g "start" is a negative number or too high)
 
@@ -15,7 +15,7 @@ namespace Hangit.App
                     return i;
             return -1;
         }
-        internal static bool CheckSolution(char tryChar,char[] inWordToCheck, char[] inScoreboard)
+        public static bool CheckSolution(char tryChar,char[] inWordToCheck, char[] inScoreboard)
         {
             int pos = -1;
             bool hit = false;
