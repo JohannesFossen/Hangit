@@ -18,9 +18,9 @@ namespace Hangit.App
     }
     public class Game
     {
-        private char[] _wordtoguess;
-        private char[] _scoreboard = new char[30];
-        private char[] _missed = "                              ".ToCharArray();
+        private char[] _wordtoguess; // OO: Try hit Alt-Enter (this will add "readonly" keyword)
+        private char[] _scoreboard = new char[30];                                   // OO: Try another datatype so you're not limited to 30 chars
+        private char[] _missed = "                              ".ToCharArray();     // OO: Try another datatype so you're not limited to 30 chars
         private int _triesleft = Program.maxTries;
         //private GuessWords _guessobj;
         private static List<GuessWords> _words;
@@ -42,7 +42,9 @@ namespace Hangit.App
             _missed     = "                              ".ToCharArray();
             Random rnd = new Random();
             int tmp = _words.Count;
-            GuessWords guessObj = _words.Find(w => w.Number == rnd.Next(0, (_words.Count - 1))); // Random error: Outside array bounds.
+            int rndint = rnd.Next(0, (_words.Count - 1));
+            GuessWords guessObj = _words.Find(w => w.Number == rndint); // Random error: Outside array bounds.
+            //GuessWords guessObj = _words.Find(w => w.Number == rnd.Next(0, (_words.Count - 1))); // Random error: Outside array bounds.
             _wordtoguess = guessObj.Word.ToUpper().ToCharArray();
             int i = 0;
             foreach (char c in _wordtoguess)
@@ -68,6 +70,7 @@ namespace Hangit.App
                     key = UserIO.ReadChar(_triesleft);
                     if (key != 'Q') // Quit character.
                     {
+                        // OO: Hint, create one more method that describes what you're checking here (that method may call Evaluate.GetCharPos)
                         if (Evaluate.GetCharPos(_missed, key) >= 0 || Evaluate.GetCharPos(_scoreboard, key) >= 0)
                         {
                             UserIO.ShowText(" Tried already.");
@@ -78,7 +81,7 @@ namespace Hangit.App
                 // Check if key is a hit.
                 if (key != 'Q')
                 {
-                    if (Evaluate.CheckSolution(key, _wordtoguess, _scoreboard))
+                    if (Evaluate.CheckSolution(key, _wordtoguess, _scoreboard)) // OO: quite good name, but you might give it an even better name
                     {
                         UserIO.ShowText(" Hit!");
                     }
@@ -90,7 +93,7 @@ namespace Hangit.App
                     }
                 }
                 // Winner or bust? Or Quit...
-                if (Evaluate.GetCharPos(_scoreboard,'-') == -1)
+                if (Evaluate.GetCharPos(_scoreboard,'-') == -1)  // OO: here you can have a method like "Evaluate.PlayerHasWon(_scoreboard)" or "Evaluate.NoOccurrance('-', _scoreboard)" or "!Evaluate.Contains('-', _scoreboard)"
                 {
                     UserIO.ShowCharString(_scoreboard);
                     UserIO.ShowText("Winner!");
